@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+
+
+</head>
+<body>
+<div class="container">
+    <div>
+        <button class="btn btn-outline-dark" ><a href="/cart">MY CART  <i class="fas fa-shopping-bag"></i></a></button>
+    </div>
+    <table class="table" border="1" th:object="${products}">
+        <tr style="background:pink">
+            <td>ID</td>
+            <td>Name</td>
+            <td>Photo</td>
+            <td>Price</td>
+            <td>Buy</td>
+        </tr>
+        <th:block th:each="product : ${products}">
+            <tr>
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td><img th:src="${product.photo}" width="100px"></td>
+                <td th:text="${product.price}"></td>
+                <td><a onclick="return confirm('Bạn có muốn thêm vào giỏ hàng không??')" th:href="@{/cart/buy/__${product.id}__}"><i class="fas fa-shopping-cart"></i>SHOPPING CART</a></td>
+                <!--kiem tra dung sai, lay san pham theo id-->
+            </tr>
+        </th:block>
+
+    </table>
+</div>
+</body>
+</html>
